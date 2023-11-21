@@ -1,0 +1,51 @@
+{%extends 'main.html'%}
+
+{%block content%}
+<style>
+ .page-container{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+
+    }
+ .main-container {
+    box-sizing: border-box;
+    text-align: center;
+ }  
+ h2{
+    color: black;
+ } 
+ img {
+    box-sizing: border-box;
+    border: 2px solid rgba(255, 0, 0, 0.904)(109, 0, 0);
+    width: 640px;
+    height: 480px;
+    margin: 10px;
+ }
+
+</style>
+<div class="page-container">
+    <div class="main-container">
+        <h2>{{car.make}} {{car.name}}</h2>
+        <p>{{car.description}}</p>
+        <hr>
+        <h3> Chat: </h3>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <input type="text" name='body' placeholder="Add Comment Here...">
+        </form>
+        {% for message in chat %}
+        <h6>{{message.host.username}} / {{message.created|timesince}}</h6>
+        <p>{{message.body}}</p>
+        {% endfor %}
+
+        
+    </div>
+    <div>
+        {%for image in car_images%}
+        <img src="{{image.photo.url}}" alt="{{image.car_in}} {{image.id}}">
+        {%endfor%}
+    </div>
+</div>
+
+
+{%endblock content %}

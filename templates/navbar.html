@@ -1,0 +1,17 @@
+<script src="https://kit.fontawesome.com/1b0d4394e5.js" crossorigin="anonymous"></script>
+
+<a href="{% url 'home' %}"> <i class="fa-solid fa-car-burst fa-lg" style="color: #b35000;">CARBARY</i> </a>
+<br>
+<br>
+<form method="GET" action="{%url 'home'%}">
+    <input type="text" name="q" placeholder="Search Cars...">
+</form>
+{% if request.user.is_authenticated%}
+<p>Welcome {{request.user}} !</p>
+<a href="{% url 'logout' %}"> Logout </a>
+{%else%}
+<a href="{% url 'login' %}"> Login </a>
+<a href="{% url 'register' %}"> Register </a>
+{%endif%}
+
+<hr>
